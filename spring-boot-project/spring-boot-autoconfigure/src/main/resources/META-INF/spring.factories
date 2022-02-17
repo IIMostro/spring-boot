@@ -1,9 +1,12 @@
 # Initializers
+# SharedMetadataReaderFactoryContextInitializer： 创建一个 SpringBoot 和 ConfigurationClassPostProcessor 共用的 CachingMetadataReaderFactory 对象
+# ConditionEvaluationReportLoggingListener: 将 ConditionEvaluationReport 写入日志
 org.springframework.context.ApplicationContextInitializer=\
 org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer,\
 org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener
 
 # Application Listeners
+# BackgroundPreinitializer: 使用一个后台线程尽早触发一些耗时的初始化任务
 org.springframework.context.ApplicationListener=\
 org.springframework.boot.autoconfigure.BackgroundPreinitializer
 

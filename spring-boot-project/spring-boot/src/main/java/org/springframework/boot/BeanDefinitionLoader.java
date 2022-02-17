@@ -168,6 +168,7 @@ class BeanDefinitionLoader {
 			((GroovyBeanDefinitionReader) this.groovyReader).beans(loader.getBeans());
 		}
 		if (isEligible(source)) {
+			// AnnotatedBeanDefinitionReader
 			this.annotatedReader.register(source);
 		}
 	}
