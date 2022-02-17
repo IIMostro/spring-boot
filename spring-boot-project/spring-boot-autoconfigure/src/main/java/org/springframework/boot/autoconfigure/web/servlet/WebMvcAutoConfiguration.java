@@ -140,8 +140,11 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * @since 2.0.0
  */
 @Configuration(proxyBeanMethods = false)
+//必须是Servlet环境
 @ConditionalOnWebApplication(type = Type.SERVLET)
+//当前运行环境的classpath中必须有Servlet类，DispatcherServlet类，WebMvcConfigurer类
 @ConditionalOnClass({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
+//如果没有自定义WebMvc的配置类，则使用本自动配置
 @ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
 @AutoConfigureAfter({ DispatcherServletAutoConfiguration.class, TaskExecutionAutoConfiguration.class,

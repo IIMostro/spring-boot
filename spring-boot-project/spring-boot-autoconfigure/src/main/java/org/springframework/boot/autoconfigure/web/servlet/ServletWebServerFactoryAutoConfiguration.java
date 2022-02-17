@@ -65,6 +65,7 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 @ConditionalOnClass(ServletRequest.class)
 @ConditionalOnWebApplication(type = Type.SERVLET)
 @EnableConfigurationProperties(ServerProperties.class)
+//注入了各个web容器，Tomcat, Jetty, Undertow
 @Import({ ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar.class,
 		ServletWebServerFactoryConfiguration.EmbeddedTomcat.class,
 		ServletWebServerFactoryConfiguration.EmbeddedJetty.class,
@@ -117,6 +118,9 @@ public class ServletWebServerFactoryAutoConfiguration {
 			if (this.beanFactory == null) {
 				return;
 			}
+
+			//注入了两个组件，定制器和错误页面
+			// 定制器 WebServerFactoryCustomizer
 			registerSyntheticBeanIfMissing(registry, "webServerFactoryCustomizerBeanPostProcessor",
 					WebServerFactoryCustomizerBeanPostProcessor.class,
 					WebServerFactoryCustomizerBeanPostProcessor::new);

@@ -82,6 +82,7 @@ public class DispatcherServletAutoConfiguration {
 	@Configuration(proxyBeanMethods = false)
 	@Conditional(DefaultDispatcherServletCondition.class)
 	@ConditionalOnClass(ServletRegistration.class)
+	// 启用配置文件与Properties的映射
 	@EnableConfigurationProperties(WebMvcProperties.class)
 	protected static class DispatcherServletConfiguration {
 
