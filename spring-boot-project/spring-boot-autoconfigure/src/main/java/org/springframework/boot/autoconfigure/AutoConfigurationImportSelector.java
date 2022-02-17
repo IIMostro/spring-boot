@@ -96,6 +96,7 @@ public class AutoConfigurationImportSelector implements DeferredImportSelector, 
 		if (!isEnabled(annotationMetadata)) {
 			return NO_IMPORTS;
 		}
+		// 加载自动配置类
 		AutoConfigurationEntry autoConfigurationEntry = getAutoConfigurationEntry(annotationMetadata);
 		return StringUtils.toStringArray(autoConfigurationEntry.getConfigurations());
 	}
@@ -119,7 +120,9 @@ public class AutoConfigurationImportSelector implements DeferredImportSelector, 
 		if (!isEnabled(annotationMetadata)) {
 			return EMPTY_ENTRY;
 		}
+		// attributes 就是@SpringBootApplication里面的exclude和excludeName
 		AnnotationAttributes attributes = getAttributes(annotationMetadata);
+		// 加载候选的自动装配类
 		List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes);
 		configurations = removeDuplicates(configurations);
 		Set<String> exclusions = getExclusions(annotationMetadata, attributes);

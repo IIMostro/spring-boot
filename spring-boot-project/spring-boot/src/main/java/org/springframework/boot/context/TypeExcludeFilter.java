@@ -44,6 +44,8 @@ import org.springframework.core.type.filter.TypeFilter;
  * lifecycle, they should generally not have dependencies on any other beans. They are
  * primarily used internally to support {@code spring-boot-test}.
  *
+ * 这里应该是很早就初始化了，不应该依赖其他的bean
+ *
  * @author Phillip Webb
  * @since 1.4.0
  */

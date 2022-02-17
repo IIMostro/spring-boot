@@ -93,6 +93,7 @@ public abstract class AutoConfigurationPackages {
 	public static void register(BeanDefinitionRegistry registry, String... packageNames) {
 		if (registry.containsBeanDefinition(BEAN)) {
 			BasePackagesBeanDefinition beanDefinition = (BasePackagesBeanDefinition) registry.getBeanDefinition(BEAN);
+			// 取主类包及其子类所有的包
 			beanDefinition.addBasePackages(packageNames);
 		}
 		else {
@@ -206,6 +207,7 @@ public abstract class AutoConfigurationPackages {
 
 	static final class BasePackagesBeanDefinition extends GenericBeanDefinition {
 
+		//根包路径，集成第三方插件的时候可以直接使用
 		private final Set<String> basePackages = new LinkedHashSet<>();
 
 		BasePackagesBeanDefinition(String... basePackages) {

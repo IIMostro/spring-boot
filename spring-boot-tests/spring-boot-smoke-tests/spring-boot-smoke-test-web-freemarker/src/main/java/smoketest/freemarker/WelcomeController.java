@@ -16,13 +16,18 @@
 
 package smoketest.freemarker;
 
-import java.util.Date;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.Map;
 
 @Controller
 public class WelcomeController {
@@ -40,6 +45,9 @@ public class WelcomeController {
 	@GetMapping("/hello")
 	@ResponseBody
 	public String hello(){
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		HttpServletRequest request = attributes.getRequest();
+		WebApplicationContext attribute = (WebApplicationContext) request.getAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 		return message;
 	}
 
