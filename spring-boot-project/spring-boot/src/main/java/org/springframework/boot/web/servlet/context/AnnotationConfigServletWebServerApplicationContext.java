@@ -197,7 +197,10 @@ public class AnnotationConfigServletWebServerApplicationContext extends ServletW
 
 	@Override
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
+		//去注册了几个request的作用域, request, session, global application
+		// 在ServletWebServerApplicationContext里面实现的
 		super.postProcessBeanFactory(beanFactory);
+		// 第一次进来的时候basePackages为空
 		if (this.basePackages != null && this.basePackages.length > 0) {
 			this.scanner.scan(this.basePackages);
 		}

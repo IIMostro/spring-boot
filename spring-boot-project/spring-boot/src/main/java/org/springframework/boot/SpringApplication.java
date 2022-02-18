@@ -453,6 +453,7 @@ public class SpringApplication {
 	}
 
 	private void refreshContext(ConfigurableApplicationContext context) {
+		//注册一个钩子方法，监听JVM关闭时关闭销毁IOC容器，好像Redisson的连接就是这个地方会注册断开。数据库连接也是这个地方注册断开的
 		if (this.registerShutdownHook) {
 			shutdownHook.registerApplicationContext(context);
 		}
@@ -790,6 +791,7 @@ public class SpringApplication {
 	 * @param applicationContext the application context to refresh
 	 */
 	protected void refresh(ConfigurableApplicationContext applicationContext) {
+		//AbstractApplicationContext实现了refresh方法
 		applicationContext.refresh();
 	}
 
